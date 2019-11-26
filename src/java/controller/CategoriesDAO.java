@@ -28,6 +28,10 @@ public class CategoriesDAO {
         connectdb = new ConnectDB();
     }
 
+    public CategoriesDAO(ConnectDB connectdb) {
+        this.connectdb = connectdb;
+    }
+
     public ArrayList<Categories> getAllCategoris() {
         ArrayList<Categories> list = new ArrayList();
         String sql = "SELECT * FROM laptrinhweb.categories";
@@ -67,5 +71,19 @@ public class CategoriesDAO {
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, id);
         return stmt.executeUpdate() > 0;
+    }
+
+    public Categories getNameCategories(String id) throws SQLException {
+        String sql = "SELECT * FROM laptrinhweb.categories WHERE id_categories=?";
+        stmt = connectdb.openConnect().prepareStatement(sql);
+        stmt.setString(1, id);
+        rs = stmt.executeQuery();
+        Categories sp = null;
+        while (rs.next()) {
+            String idsp = rs.getString("id_categories");
+            String name = rs.getString("name_categories");
+            sp = new Categories(idsp, name);
+        }
+        return sp;
     }
 }

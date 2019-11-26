@@ -9,15 +9,24 @@ package model;
  *
  * @author Administrator
  */
-public class SignUp {
+public class NhanVien {
+    private int id;
     private Account acount;
     private String hoten,email,sdt;
 
-    public SignUp(Account acount, String hoten, String email, String sdt) {
+    public NhanVien(Account acount, String hoten, String email, String sdt) {
         this.acount = acount;
         this.hoten = hoten;
         this.email = email;
         this.sdt = sdt;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public Account getAcount() {

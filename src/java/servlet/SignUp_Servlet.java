@@ -5,7 +5,7 @@
  */
 package servlet;
 
-import controller.SignUpDAO;
+import controller.NhanvienDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -19,7 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
-import model.SignUp;
+import model.NhanVien;
 
 /**
  *
@@ -82,9 +82,9 @@ public class SignUp_Servlet extends HttpServlet {
         String sdt = request.getParameter("sdt");
         String pass1 = request.getParameter("password");
         String passSha = getSHAHash(pass1);
-        SignUpDAO signUpDAO = new SignUpDAO();
+        NhanvienDAO signUpDAO = new NhanvienDAO();
         try {
-            signUpDAO.insert(new SignUp(new Account(username, passSha), hoten, email, sdt));
+            signUpDAO.insertNhanVien(new NhanVien(new Account(username, passSha), hoten, email, sdt));
         } catch (SQLException ex) {
             Logger.getLogger(SignUp_Servlet.class.getName()).log(Level.SEVERE, null, ex);
         }

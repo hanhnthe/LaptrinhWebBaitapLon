@@ -10,7 +10,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import model.Categories;
 import model.News;
+import model.NhanVien;
 
 /**
  *
@@ -22,9 +24,13 @@ public class NewsDAO {
     private PreparedStatement stmt = null;
     private ResultSet rs = null;
     private ConnectDB connectdb;
+    private CategoriesDAO cateAO;
+    private NhanvienDAO nvDAO;
 
     public NewsDAO() {
         connectdb = new ConnectDB();
+        cateAO = new CategoriesDAO(connectdb);
+        nvDAO = new NhanvienDAO(connectdb);  
     }
 
     public ArrayList<News> getAllNews() {
@@ -35,13 +41,17 @@ public class NewsDAO {
             while (rs.next()) {
                 String id = rs.getString("new_id");
                 String id_categories = rs.getString("id_categories");
-                String id_user = rs.getString("id_user");
+                String name_categories = getNameCategories(id_categories);
+                int id_user = rs.getInt("id_user");
+                String name_user = getNameNhanVien(id_user);
                 String new_name = rs.getString("news_name");
                 String desp = rs.getString("description");
                 String detail = rs.getString("detail");
                 String image = rs.getString("image");
                 String date = rs.getString("date");
                 News sp = new News(id, id_categories, id_user, new_name, desp, detail, image, date);
+                sp.setName_categories(name_categories);
+                sp.setName_user(name_user);
                 list.add(sp);
             }
         } catch (Exception e) {
@@ -58,7 +68,7 @@ public class NewsDAO {
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, sp.getNew_id());
         stmt.setString(2, sp.getCategory_id());
-        stmt.setString(3, sp.getUser_id());
+        stmt.setInt(3, sp.getUser_id());
         stmt.setString(4, sp.getNew_name());
         stmt.setString(5, sp.getDescription());
         stmt.setString(6, sp.getDetail());
@@ -72,7 +82,7 @@ public class NewsDAO {
                 + "`description`=?,`detail`=?,`image`=?,`date`=? WHERE `new_id`=?;";
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, sp.getCategory_id());
-        stmt.setString(2, sp.getUser_id());
+        stmt.setInt(2, sp.getUser_id());
         stmt.setString(3, sp.getNew_name());
         stmt.setString(4, sp.getDescription());
         stmt.setString(5, sp.getDetail());
@@ -87,6 +97,14 @@ public class NewsDAO {
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, id);
         return stmt.executeUpdate() > 0;
+    }
+    public String getNameCategories(String id_categories) throws SQLException{
+        Categories categories = cateAO.getNameCategories(id_categories);
+        return categories.getCategory_name();
+    }
+    public String getNameNhanVien(int id_nhanvien) throws SQLException{
+        NhanVien nv = nvDAO.getNameNhanVien(id_nhanvien);
+        return nv.getHoten();
     }
 
 }

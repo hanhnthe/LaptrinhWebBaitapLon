@@ -11,10 +11,11 @@ package model;
  */
 public class News {
     private String new_id;
-    private String category_id, user_id, new_name, 
-            description, detail, image, date;
+    private int user_id;
+    private String category_id, new_name, 
+            description, detail, image, date,name_categories,name_user;
 
-    public News(String new_id, String category_id, String user_id, String new_name, String description, String detail, String image, String date) {
+    public News(String new_id, String category_id, int user_id, String new_name, String description, String detail, String image, String date) {
         this.new_id = new_id;
         this.category_id = category_id;
         this.user_id = user_id;
@@ -25,7 +26,21 @@ public class News {
         this.date = date;
     }
 
-  
+    public String getName_categories() {
+        return name_categories;
+    }
+
+    public void setName_categories(String name_categories) {
+        this.name_categories = name_categories;
+    }
+
+    public String getName_user() {
+        return name_user;
+    }
+
+    public void setName_user(String name_user) {
+        this.name_user = name_user;
+    }
 
     public String getNew_id() {
         return new_id;
@@ -43,11 +58,11 @@ public class News {
         this.category_id = category_id;
     }
 
-    public String getUser_id() {
+    public int getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(String user_id) {
+    public void setUser_id(int user_id) {
         this.user_id = user_id;
     }
 
