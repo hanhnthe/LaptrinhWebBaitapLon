@@ -8,6 +8,8 @@ package servlet;
 import controller.LoginDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,22 +18,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import model.Account;
 
-/**
+/*t
  *
  * @author Administrator
  */
-@WebServlet(name = "Login_Servler", urlPatterns = {"/Login_Servler"})
-public class Login_Servler extends HttpServlet {
+@WebServlet(name = "Login_Servlet", urlPatterns = {"/Login_Servlet"})
+public class Login_Servlet extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
@@ -61,33 +54,44 @@ public class Login_Servler extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String username = request.getParameter("username");
-        String pass = request.getParameter("password");
-        
+        String pass1 = request.getParameter("password");
+        String passSha = getSHAHash(pass1);
+         boolean check = false;
         LoginDAO loginDAO = new LoginDAO();
         ArrayList<Account> list = loginDAO.getAllAccount();
-        boolean check = false;
-        for(int i=0; i< list.size(); i++){
+        if(list!=null){
+             for(int i=0; i< list.size(); i++){
             Account acc = list.get(i);
-            if(acc.equals(new Account(username, pass))){
+            if(acc.getUsername().equalsIgnoreCase(username)&& acc.getPassword().equalsIgnoreCase(passSha)){
                 check = true;
             }
         }
-        if(check){
+        if(check==true){
             processRequest(request, response);
         }else{
             System.out.println(" loi ");
         }
+        }else{
+            System.out.println("loi DAO");
+        }
+       
         
     }
+   public static String getSHAHash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
-
+    public static String convertByteToHex(byte[] data) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
 }

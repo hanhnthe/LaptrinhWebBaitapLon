@@ -1,0 +1,276 @@
+header .webname{
+	height: 100px;
+	width:40%;
+	background: #FFF;
+	float: left;
+}
+
+.webname img{
+	height: 70px;
+	width: 70px;
+	float: left;
+	margin-left: 150px; 
+
+}
+.webname h1{
+	color:  #F00;
+	float: left;
+	margin-bottom: 15px; 
+	font-family: cursive;
+}
+header .login  {
+  margin-top: 0px;
+  margin-left: 280px;
+  display: block;
+  float: left;
+}
+header .login i{
+  color:white;
+  padding-right: 5px;
+}
+header .login a{
+  text-decoration: none;
+  color: #F10;
+  font-size: 21px;
+  /*display: block;*/
+}
+header .login a:hover{
+  text-decoration: underline;
+}
+header .hform {
+   height: 100px;
+  width: 60%;
+  float:left;
+}
+header form {
+  margin-top: 30px;
+  margin-right: 160px;
+}
+form .search_icons{
+    padding-right: 50px;
+    /*margin-top: 30px;*/
+    height: 30px;
+    border: solid white 1px;
+    border-radius: 4px; 
+    background-color: #FFF;
+    position: relative;
+    float:left;
+    z-index: 1;
+}
+form .search_icons:hover{
+    background-color: white;
+}
+form .search_submit{
+     float: left;
+    position: relative;
+    background:none;
+    height: 30px;
+    border: none;
+    left: 420px;
+    z-index: 2;
+   
+}
+nav{
+	height: 50px;
+	width: 100%;
+	background:#8A0808; 
+	float: left;
+}
+.top_nav ul{
+  margin: 0;
+  margin-left: 250px;
+  padding: 0; 
+  /*align-items: center;*/
+
+}
+.top_nav ul li{
+    float: left;
+   list-style-type: none;
+   
+}
+.top_nav ul li a{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 16px;
+    font-size: 20px;
+    color: #FFF;
+}
+.top_nav ul li:hover {
+    //color: red;
+    background-color: #3B0B0B;
+    text-decoration: none;
+
+}
+
+input.search_icons {
+    border: 1px solid red;
+    width: 400px;
+}
+
+img.anh2 {
+    position: absolute;
+    height: 19px;
+    width: 28px;
+    top: 9px;
+}
+
+section .big_center{
+	width: 70%;
+	height: 2500px;
+	float: left;
+}
+section .big_center .left_center{
+	width: 60%;
+	height: 600px;
+	background: #FFF;
+	float: left;
+}
+.left_center img.big_image{
+	width: 100%;
+	margin-top: 15px;
+
+}
+.left_center a{
+	font-size: 40px;
+	color: #000;
+	text-decoration: none;
+
+}
+.left_center a:hover{
+	color: red;
+    text-decoration: none;
+
+}
+section .big_center .right_center{
+	width: 40%;
+	height: 600px;
+	background: #FFF;
+	float: left;
+}
+.right_center .news_small{
+  margin-left:   30px;
+  margin-top:  22px;
+  width: 100%;
+  height: 70px;
+}
+.right_center .news_small .image_des{
+  float: left;
+  width: 15%;
+  height: 100%;
+}
+.right_center .news_small .des{
+  float: left;
+  width: 80%;
+  height: 100%;
+
+}
+.des a{
+  font-size: 20px;
+  text-decoration: none;
+  color: #000;
+  width: 95%;
+}
+.des a:hover{
+  color: red;
+  text-decoration: none;
+}
+section .big_center .bottom_center{
+  width: 100%;
+  height: 1900px;
+  background: #FFF;
+  float: left;
+}
+.bottom_center .news_big{
+  margin-top: 20px;
+  width: 100%;
+  height: 275px;
+
+}
+.bottom_center .news_big .image_des_big{
+  float: left;
+  height: 100%;
+  width: 30%;
+}
+.bottom_center .news_big .des_big{
+  float: left;
+  height: 100%;
+  width: 70%;
+}
+.des_big a{
+   font-size: 35px;
+   text-decoration: none;
+   color: #000;
+}
+.des_big a:hover{
+  color: red;
+  text-decoration: none;
+}
+.des_big p{
+  font-size: 20px;
+}
+.bottom_center .title{
+  text-align: left;
+  padding-left: 10px;
+}
+.bottom_center .video{
+  border: 3px solid red;
+  text-align: center;
+  height: 500px;
+  background:#FFFF99;
+}
+section .left{
+	width: 15%;
+	height: 2500px;
+	float: left;
+	background: #FFF;
+}
+section .right{
+	width: 15%;
+	height: 2500px;
+	float: right;
+	background: #FFF;
+}
+
+
+footer {
+/*text-align: center;*/
+  background-color: #E6E6E6;
+  height: 350px;
+  width: 100%;
+  float: left;
+  border: solid 1px lightgrey;
+  padding: 20px 10px;
+}
+footer .shear {
+    text-align: center;
+    font-family: Arial;
+    position: relative;
+}
+.shear a {
+    background-color: red;
+    color: white;
+    margin: 10px;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+.shear a:hover {
+    background: white;
+    color: red;
+    /*border: 1px solid white;*/
+}
+footer .intro{
+  list-style-type: none;
+   text-align: left;
+   margin-left: 400px;
+}
+.introduc h2 {
+  font-family: Arial;
+}
+ h3{
+	text-align: center;
+}
+

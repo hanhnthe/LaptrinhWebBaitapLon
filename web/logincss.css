@@ -1,0 +1,135 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Nov 25, 2019, 3:16:00 PM
+    Author     : Administrator
+*/
+table {
+     border: 10px;
+     width: 600px;
+     height: 350px;
+     margin-left:auto;
+     margin-right: auto;
+     margin-top: 300px;
+     background: pink;
+}
+
+header .webname{
+	height: 100px;
+	width:40%;
+	background: #FFF;
+	float: left;
+}
+
+.webname img{
+	height: 70px;
+	width: 70px;
+	float: left;
+	margin-left: 150px; 
+
+}
+.webname h1{
+	color:  #F00;
+	float: left;
+	margin-bottom: 15px; 
+	font-family: cursive;
+}
+header .login  {
+  margin-top: 0px;
+  margin-left: 280px;
+  display: block;
+  float: left;
+}
+header .login i{
+  color:white;
+  padding-right: 5px;
+}
+header .login a{
+  text-decoration: none;
+  color: #F10;
+  font-size: 21px;
+  /*display: block;*/
+}
+header .login a:hover{
+  text-decoration: underline;
+}
+header .hform {
+   height: 100px;
+  width: 60%;
+  float:left;
+}
+header form {
+  margin-top: 30px;
+  margin-right: 160px;
+}
+form .search_icons{
+    padding-right: 50px;
+    /*margin-top: 30px;*/
+    height: 30px;
+    border: solid white 1px;
+    border-radius: 4px; 
+    background-color: #FFF;
+    position: relative;
+    float:left;
+    z-index: 1;
+}
+form .search_icons:hover{
+    background-color: white;
+}
+form .search_submit{
+     float: left;
+    position: relative;
+    background:none;
+    height: 30px;
+    border: none;
+    left: 420px;
+    z-index: 2;
+   
+}
+nav{
+	height: 50px;
+	width: 100%;
+	background:#8A0808; 
+	float: left;
+}
+.top_nav ul{
+  margin: 0;
+  margin-left: 250px;
+  padding: 0; 
+  /*align-items: center;*/
+
+}
+.top_nav ul li{
+    float: left;
+   list-style-type: none;
+   
+}
+.top_nav ul li a{
+    text-decoration: none;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    font-size: 20px;
+    color: #FFF;
+}
+.top_nav ul li:hover {
+    color: red;
+    background-color: #3B0B0B;
+    text-decoration: none;
+
+}
+
+input.search_icons {
+    border: 1px solid red;
+    width: 400px;
+}
+
+img.anh2 {
+    position: absolute;
+    height: 19px;
+    width: 28px;
+    top: 9px;
+}

@@ -8,6 +8,8 @@ package servlet;
 import controller.SignUpDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,6 +28,7 @@ import model.SignUp;
 @WebServlet(name = "SignUp_Servlet", urlPatterns = {"/SignUp_Servlet"})
 public class SignUp_Servlet extends HttpServlet {
 
+   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -77,11 +80,11 @@ public class SignUp_Servlet extends HttpServlet {
         String hoten = request.getParameter("hoten");
         String email = request.getParameter("email");
         String sdt = request.getParameter("sdt");
-        String pass = request.getParameter("password");
-        
+        String pass1 = request.getParameter("password");
+        String passSha = getSHAHash(pass1);
         SignUpDAO signUpDAO = new SignUpDAO();
         try {
-            signUpDAO.insert(new SignUp(new Account(username, pass), hoten, email, sdt));
+            signUpDAO.insert(new SignUp(new Account(username, passSha), hoten, email, sdt));
         } catch (SQLException ex) {
             Logger.getLogger(SignUp_Servlet.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -89,14 +92,22 @@ public class SignUp_Servlet extends HttpServlet {
         processRequest(request, response);
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
+    public static String getSHAHash(String input) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("SHA-1");
+            byte[] messageDigest = md.digest(input.getBytes());
+            return convertByteToHex(messageDigest);
+        } catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static String convertByteToHex(byte[] data) {
+        StringBuffer sb = new StringBuffer();
+        for (int i = 0; i < data.length; i++) {
+            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
+        }
+        return sb.toString();
+    }
 
 }
