@@ -42,7 +42,7 @@ public class NewsDAO {
                 String id = rs.getString("new_id");
                 String id_categories = rs.getString("id_categories");
                 String name_categories = getNameCategories(id_categories);
-                int id_user = rs.getInt("id_user");
+                String id_user = rs.getString("id_user");
                 String name_user = getNameNhanVien(id_user);
                 String new_name = rs.getString("news_name");
                 String desp = rs.getString("description");
@@ -68,7 +68,7 @@ public class NewsDAO {
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, sp.getNew_id());
         stmt.setString(2, sp.getCategory_id());
-        stmt.setInt(3, sp.getUser_id());
+        stmt.setString(3, sp.getUser_id());
         stmt.setString(4, sp.getNew_name());
         stmt.setString(5, sp.getDescription());
         stmt.setString(6, sp.getDetail());
@@ -82,7 +82,7 @@ public class NewsDAO {
                 + "`description`=?,`detail`=?,`image`=?,`date`=? WHERE `new_id`=?;";
         stmt = connectdb.openConnect().prepareStatement(sql);
         stmt.setString(1, sp.getCategory_id());
-        stmt.setInt(2, sp.getUser_id());
+        stmt.setString(2, sp.getUser_id());
         stmt.setString(3, sp.getNew_name());
         stmt.setString(4, sp.getDescription());
         stmt.setString(5, sp.getDetail());
@@ -102,7 +102,7 @@ public class NewsDAO {
         Categories categories = cateAO.getNameCategories(id_categories);
         return categories.getCategory_name();
     }
-    public String getNameNhanVien(int id_nhanvien) throws SQLException{
+    public String getNameNhanVien(String id_nhanvien) throws SQLException{
         NhanVien nv = nvDAO.getNameNhanVien(id_nhanvien);
         return nv.getHoten();
     }

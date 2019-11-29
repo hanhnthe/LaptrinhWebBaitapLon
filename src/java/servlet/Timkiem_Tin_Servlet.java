@@ -5,30 +5,19 @@
  */
 package servlet;
 
-import controller.NhanvienDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import model.Account;
-import model.NhanVien;
 
 /**
  *
  * @author Administrator
  */
-@WebServlet(name = "SignUp_Servlet", urlPatterns = {"/SignUp_Servlet"})
-public class SignUp_Servlet extends HttpServlet {
+public class Timkiem_Tin_Servlet extends HttpServlet {
 
-   
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -46,10 +35,10 @@ public class SignUp_Servlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet SignUp_Servlet</title>");            
+            out.println("<title>Servlet Timkiem_Servlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet SignUp_Servlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet Timkiem_Servlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -64,6 +53,11 @@ public class SignUp_Servlet extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        processRequest(request, response);
+    }
 
     /**
      * Handles the HTTP <code>POST</code> method.
@@ -76,38 +70,17 @@ public class SignUp_Servlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String username = request.getParameter("username");
-        String hoten = request.getParameter("hoten");
-        String email = request.getParameter("email");
-        String sdt = request.getParameter("sdt");
-        String pass1 = request.getParameter("password");
-        String passSha = getSHAHash(pass1);
-        NhanvienDAO signUpDAO = new NhanvienDAO();
-        try {
-            signUpDAO.insertNhanVien(new NhanVien(new Account(username, passSha), hoten, email, sdt));
-        } catch (SQLException ex) {
-            Logger.getLogger(SignUp_Servlet.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         processRequest(request, response);
     }
 
-    public static String getSHAHash(String input) {
-        try {
-            MessageDigest md = MessageDigest.getInstance("SHA-1");
-            byte[] messageDigest = md.digest(input.getBytes());
-            return convertByteToHex(messageDigest);
-        } catch (NoSuchAlgorithmException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public static String convertByteToHex(byte[] data) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < data.length; i++) {
-            sb.append(Integer.toString((data[i] & 0xff) + 0x100, 16).substring(1));
-        }
-        return sb.toString();
-    }
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

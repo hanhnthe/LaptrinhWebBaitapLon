@@ -7,7 +7,7 @@ and open the template in the editor.
     Created on : Nov 25, 2019, 3:16:00 PM
     Author     : Administrator
 */
-table {
+/*section table {
      border: 10px;
      width: 600px;
      height: 350px;
@@ -15,8 +15,34 @@ table {
      margin-right: auto;
      margin-top: 300px;
      background: pink;
-}
+     float: left;
+}*/
 
+section .loginleft{
+    width: 25%;
+    height: 400px;
+    margin-top: 10px;
+    float: left;
+    margin-bottom: 10px;
+}
+section .loginfrm{
+    width: 50%;
+    height: 400px;
+    float: left;
+    background: pink;
+    border: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.loginfrm h1{
+    margin-top: 30px;
+}
+.loginfrm form{
+   margin-top: 40px;
+}
+.loginfrm form p{
+    
+}
 header .webname{
 	height: 100px;
 	width:40%;
@@ -36,25 +62,6 @@ header .webname{
 	float: left;
 	margin-bottom: 15px; 
 	font-family: cursive;
-}
-header .login  {
-  margin-top: 0px;
-  margin-left: 280px;
-  display: block;
-  float: left;
-}
-header .login i{
-  color:white;
-  padding-right: 5px;
-}
-header .login a{
-  text-decoration: none;
-  color: #F10;
-  font-size: 21px;
-  /*display: block;*/
-}
-header .login a:hover{
-  text-decoration: underline;
 }
 header .hform {
    height: 100px;
@@ -111,12 +118,12 @@ nav{
     text-decoration: none;
     display: block;
     text-align: center;
-    padding: 14px 16px;
+    padding: 16px;
     font-size: 20px;
     color: #FFF;
 }
 .top_nav ul li:hover {
-    color: red;
+    //color: red;
     background-color: #3B0B0B;
     text-decoration: none;
 
@@ -132,4 +139,45 @@ img.anh2 {
     height: 19px;
     width: 28px;
     top: 9px;
+}
+
+footer {
+/*text-align: center;*/
+  background-color: #E6E6E6;
+  height: 350px;
+  width: 100%;
+  float: left;
+  border: solid 1px lightgrey;
+  padding: 20px 10px;
+}
+footer .shear {
+    text-align: center;
+    font-family: Arial;
+    position: relative;
+}
+.shear a {
+    background-color: red;
+    color: white;
+    margin: 10px;
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+    border: 1px solid red;
+    border-radius: 5px;
+}
+.shear a:hover {
+    background: white;
+    color: red;
+    /*border: 1px solid white;*/
+}
+footer .intro{
+  list-style-type: none;
+   text-align: left;
+   margin-left: 400px;
+}
+.introduc h2 {
+  font-family: Arial;
+}
+ h3{
+	text-align: center;
 }

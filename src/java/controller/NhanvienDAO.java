@@ -33,19 +33,19 @@ public class NhanvienDAO {
     }
     
 
-    public ArrayList<NhanVien> getAllProducts() {
+    public ArrayList<NhanVien> getAllNhanvien() {
         ArrayList<NhanVien> list = new ArrayList();
         String sql = "SELECT * FROM laptrinhweb.login";
         try {
             rs = connectdb.getStatement().executeQuery(sql);
             while (rs.next()) {
-                int id = rs.getInt("id");
+                String id = rs.getString("id");
                 String username = rs.getString("name");
                 String password = rs.getString("password");
                 String hoten = rs.getString("hoten");
                 String email = rs.getString("email");
                 String sdt = rs.getString("sdt");
-                NhanVien sp = new NhanVien(new Account(username, password), hoten, email, sdt);
+                NhanVien sp = new NhanVien(id,new Account(username, password), hoten, email, sdt);
                 sp.setId(id);
                 list.add(sp);
             }
@@ -57,13 +57,14 @@ public class NhanvienDAO {
     }
 
     public boolean insertNhanVien(NhanVien sign) throws SQLException {
-        String sql = "INSERT INTO `laptrinhweb`.`login` ( `name`, `password`, `hoten`,`email`,`sdt`) VALUES (?, ?, ?, ?,?);";
+        String sql = "INSERT INTO `laptrinhweb`.`login` ( `id`,`name`, `password`, `hoten`,`email`,`sdt`) VALUES (?,?, ?, ?, ?,?);";
         stmt = connectdb.openConnect().prepareStatement(sql);
-        stmt.setString(1, sign.getAcount().getUsername());
-        stmt.setString(2, sign.getAcount().getPassword());
-        stmt.setString(3, sign.getHoten());
-        stmt.setString(4, sign.getEmail());
-        stmt.setString(5, sign.getSdt());
+        stmt.setString(1, sign.getId());
+        stmt.setString(2, sign.getAcount().getUsername());
+        stmt.setString(3, sign.getAcount().getPassword());
+        stmt.setString(4, sign.getHoten());
+        stmt.setString(5, sign.getEmail());
+        stmt.setString(6, sign.getSdt());
         return stmt.executeUpdate() > 0;
     }
 
@@ -75,32 +76,31 @@ public class NhanvienDAO {
         stmt.setString(3, sp.getHoten());
         stmt.setString(4, sp.getEmail());
         stmt.setString(5, sp.getSdt());
-        stmt.setInt(6, sp.getId());
+        stmt.setString(6, sp.getId());
         return stmt.executeUpdate() > 0;
     }
 
-    public boolean delete(int id) throws SQLException {
+    public boolean delete(String id) throws SQLException {
         String sql = "DELETE FROM `laptrinhweb`.`login` WHERE `id`=?";
         stmt = connectdb.openConnect().prepareStatement(sql);
-        stmt.setInt(1, id);
+        stmt.setString(1, id);
         return stmt.executeUpdate() > 0;
     }
 
-    public NhanVien getNameNhanVien(int id) throws SQLException {
+    public NhanVien getNameNhanVien(String id) throws SQLException {
         String sql = "SELECT * FROM laptrinhweb.login WHERE id=?";
         stmt = connectdb.openConnect().prepareStatement(sql);
-        stmt.setInt(1, id);
+        stmt.setString(1, id);
         rs = stmt.executeQuery();
         NhanVien sp = null;
         while (rs.next()) {
-            int id1 = rs.getInt("id");
+            String id1 = rs.getString("id");
             String username = rs.getString("name");
             String password = rs.getString("password");
             String hoten = rs.getString("hoten");
             String email = rs.getString("email");
             String sdt = rs.getString("sdt");
-            sp = new NhanVien(new Account(username, password), hoten, email, sdt);
-            sp.setId(id);
+            sp = new NhanVien(id1,new Account(username, password), hoten, email, sdt);
         }
         return sp;
     }

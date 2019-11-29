@@ -10,22 +10,23 @@ package model;
  * @author Administrator
  */
 public class NhanVien {
-    private int id;
+    private String id;
     private Account acount;
     private String hoten,email,sdt;
 
-    public NhanVien(Account acount, String hoten, String email, String sdt) {
+    public NhanVien(String id,Account acount, String hoten, String email, String sdt) {
+        this.id = id;
         this.acount = acount;
         this.hoten = hoten;
         this.email = email;
         this.sdt = sdt;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
